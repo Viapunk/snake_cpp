@@ -9,10 +9,8 @@
 #include "Block.h"
 
 
-Block::Block(int x, int y)
+Block::Block()
 {
-	rect->x = x;
-	rect->y = y;
 	rect->w = Width;
 	rect->h = Height;
 }

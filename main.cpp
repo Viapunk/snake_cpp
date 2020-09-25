@@ -6,6 +6,7 @@
  */
 
 #include <SDL2/SDL.h>
+#include "App.h"
 
 #define WINDOW_WIDTH 	640
 #define WINDOW_HEIGHT	480
@@ -13,19 +14,28 @@
 
 int main(int argc, char* argv[])
 {
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
-		printf("Error Initializing SDL");
+	App game = App();
 
-	SDL_Window* window = 	SDL_CreateWindow("Snake by Viapunk", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
-	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-	SDL_Surface*  surface =	SDL_GetWindowSurface(window);
+	game.OnInit(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-	SDL_FillRect(surface, NULL, SDL_MapRGB(surface->format, 0x00, 0x00, 0x00));
+	Uint32 color = 0xFFFFFFFF;
 
+	SDL_FillRect(surface, NULL, color);
 	SDL_UpdateWindowSurface(window);
-	SDL_Delay(5000);
+
+	SDL_Event e;
+	bool quit = false;
+	while (!quit) {
+	    while (SDL_PollEvent(&e)) {
+	        if (e.type == SDL_QUIT) {
+	            quit = true;
+	        }
+	    }
+	}
 
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
+
+	return 0;
 
 }

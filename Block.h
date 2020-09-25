@@ -14,7 +14,8 @@
 
 class Block
 {
-	Block(int x, int y);
+public:
+	Block();
 	~Block();
 
 	void SetColor(Uint8 r, Uint8 g, Uint8 b);
